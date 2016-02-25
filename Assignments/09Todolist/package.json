@@ -1,15 +1,18 @@
 {
   "name": "express_exercise",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple todo application.",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Zhecan Wang(James)",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "mongoose": "^4.3.7"
+    "mongoose": "^4.3.7",
+    "morgan": "~1.2.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
   }
 }
