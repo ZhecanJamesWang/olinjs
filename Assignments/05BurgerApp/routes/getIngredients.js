@@ -8,6 +8,7 @@ routes.getIngredients = function(req, res) {
 	// ingredientModel.find().remove().exec();
 
 	ingredientModel.find(function(err, data) {
+		//Error handling see Kitchen js for details
 	var ingredients = data;
 	console.log(ingredients);
 	res.render("ingredients", {ingredients: ingredients});
@@ -28,6 +29,8 @@ routes.addIngredients = function(req, res) {
 	var o = new ingredientModel(req.body);
 	// console.log("before save" + req.body);
 	o.save(function(err, data) {
+		//Same here
+
 		// var ingredient = data;
 			// console.log(req.body);
 	    	res.json(data);
@@ -43,7 +46,8 @@ routes.updateIngredients = function(req, res) {
 		ingredientModel.findById(req.body.id, function(err, data){
 			if(err){
 				console.log(err)
-				res.end("");
+				//Its better to notify the client that an error happened than just end.
+				res.status(500).send("Error finding ingredients by id"); 
 			}
 			else{
 				// console.log(data);
@@ -54,6 +58,7 @@ routes.updateIngredients = function(req, res) {
 					data.price = req.body.price;
 				}
 				data.save(function(err, data) {
+					//error handling
 				    	res.json(data);
 				});
 			}
@@ -72,6 +77,7 @@ routes.deleteIngredients = function(req, res) {
 	if(req.body){
 		console.log(req.body.id);
 		ingredientModel.findOneAndRemove({"_id": req.body.id}, function(err, data) {
+		//you get the idea. 
 		var message = "After deleting: ";
 		res.json(req.body.id);
 		
