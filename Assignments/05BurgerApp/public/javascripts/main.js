@@ -1,9 +1,10 @@
-
+//Generally you want to seperate functionality on the client into different js files
+//and only ask for the ones used on the page. 
 //----------------------------------------------------------------------------------
-var $form = $("#add");
+var $form = $("#add"); //Selects the form by Id using jquery
 var totalAmount = 0;
 
-var onSuccess = function(data, status) {
+var onSuccess = function(data, status) { //On a error free return we use this function
   var $ingredientsList = $('#ingredients-list');
   var $template = $('#template');
   var $templateLi = $template.children()[0];
@@ -30,8 +31,8 @@ var onError = function(data, status) {
   console.log("error", data);
 };
 
-$form.submit(function(event) {
-  event.preventDefault();
+$form.submit(function(event) { //Add an event listener to the form for the submit event
+  event.preventDefault(); //prevent the form from auto submitting
   formData = $form.serialize();
   var name = $form.find("#name").val();
   var price = $form.find("#price").val();
@@ -40,9 +41,9 @@ $form.submit(function(event) {
      price: price 
   }
 
-$.post("addIngredients", formData)
-    .done(onSuccess)
-    .error(onError);
+$.post("addIngredients", formData) //make a Ajax Post request
+    .done(onSuccess) //runs when server does res.send, res.end, etc.
+    .error(onError); //runs if server sets status above 300 and does res.send, etc.
 });
 
 
