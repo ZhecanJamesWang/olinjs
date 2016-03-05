@@ -138,7 +138,7 @@ routes.addTweet = function(req, res) {
 
 }
 
-
+// In general try removing all console.log statements from your code when pushed as a "final" version at master/prod
 routes.delTweet = function(req, res) {
 	if(req.body){
 		console.log("delTweet");

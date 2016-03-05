@@ -9,7 +9,7 @@ var app = express();
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var session = require('express-session');
-var auth = require('./auth');
+var auth = require('./oauth');
 
 var PORT = 3000;
 var mongoose = require('mongoose');
@@ -18,9 +18,9 @@ mongoose.connect(process.env.MONGOURI || 'mongodb://localhost/test');
 
 
 passport.use(new FacebookStrategy({
-    clientID: auth.FACEBOOK_APP_ID,
-    clientSecret: auth.FACEBOOK_APP_SECRET,
-    callbackURL: auth.FACEBOOK_CALLBACK_URL
+    clientID: auth.facebook.clientID,
+    clientSecret: auth.facebook.clientSecret,
+    callbackURL: auth.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
      index.addUsers(profile.displayName);
@@ -60,6 +60,7 @@ app.get("/", index.getInfo);
 
 app.get("/login", index.login);
 
+// Although short, keep that in your index.js where all your API callback live for consistency
 app.get('/logout', function (req, res){
   req.session.destroy(function (err) {
     res.redirect('/'); //Inside a callback… bulletproof!
