@@ -1,0 +1,65 @@
+
+<h1><center>Twoter</center></h1>
+
+{{#if currentUser}}
+	<button class = "logbutton" type="button" onclick="window.location.href='/logout';" style="float: right;"> Log out</button>
+	<br>
+	<br>
+{{else}}
+	<button class = "logbutton" type="button" onclick="window.location.href='/login';" style="float: right;"> Log in</button>
+{{/if}}
+
+
+
+
+
+ <li id = tweetsListElement> 
+	 <button class="delbutton" type="button" onclick = "delTweetFunction('{{this._id}}');">x</button> 
+	 <span class="tweetContent">{{this.tweet}}</span>  
+	 <div class="tweetName">{{this.name}}</div>
+ </li>
+
+
+<div class="grid">
+  <div class="grid__row">
+    
+	<div class="grid__item1">
+		 
+		<ul id = tweets>
+		{{#if currentUser}}
+			<li id = "newtweet" action="new tweet"> 
+			  New Tweet:<br><br>
+			  <input id = "tweet" type="text" name="tweet" value="enter here..."><br>
+			  <input type="button" value="Post" onclick = "newTweetFunction();"><br>
+			  <div id = "currentUser">{{currentUser}}</div>
+			</li> 
+		{{/if}}
+		{{#each tweets}}
+			<li id = {{this._id}}> <button class="delbutton" type="button" onclick = "delTweetFunction('{{this._id}}');">x</button> 
+			<span class="tweetContent">{{this.tweet}}</span>
+
+			<div class="tweetName">{{this.name}}</div>
+			</li>
+
+		{{/each}}  
+		</ul>
+    </div>
+
+    <div class="grid__item2">
+		<h2>Users</h2>
+		<ul>
+		{{#each users}}
+		<div class="userbutton">
+			<button class="userbutton" type="button" onclick = "userClickFunction('{{this.name}}');">
+				<div class = "userName">
+					{{this.name}}
+				</div>
+			</button>
+		</div>
+		{{/each}}  
+		</ul>
+    </div>
+  </div>
+</div>
+
+
