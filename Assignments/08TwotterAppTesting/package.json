@@ -20,7 +20,7 @@
     "supertest": "^1.2.0"
   },
   "scripts": {
-    "mocha": "./node_modules/mocha/bin/mocha tests/server",
+    "mocha": "./node_modules/mocha/bin/mocha tests/server tests/server/models-- --recursive -R spec || exit 0",
     "start": "node app.js"
   },
   "author": "",

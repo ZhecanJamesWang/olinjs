@@ -24,28 +24,12 @@ describe("The app", function() {
   });
 
   
-  it('user.name should be an case-insensitive match for "tobi"', function(done){
-    request(app)
-      .get('/user')
-      .set('Accept', 'application/json')
-      .expect(function(res) {
-        res.body.id = 'some fixed id';
-        res.body.name = res.body.name.toUpperCase();
-      })
-      .expect(200, {
-        id: 'some fixed id',
-        name: 'TOBI'
-      }, done);
-  });
   
   it('should return 404 on GET /notaroute', function(done) {
     request(app)
       .get('/notaroute')
       .expect(404, done);
   });
-
-
-
 
 
 });
