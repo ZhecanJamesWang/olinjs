@@ -20,6 +20,7 @@ describe("The app", function() {
     request(app)
       .get('/')
       .expect('Content-Type', 'text/html; charset=utf-8')
+      // be careful when expecting length because any change you make to the html with adjust that which is why this test is now failing
       .expect('Content-Length', '2551', done); // ...or this way, inline!
   });
 
